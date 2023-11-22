@@ -1,5 +1,27 @@
 "use strict"
 
+//set player choice
+let playerChoice = getPlayerChoice(); 
+
+//check user input
+if (playerChoice !== "Rock" && playerChoice !== "Papper" && playerChoice !== "Scissors") {
+    console.log(playerChoice);
+    throw new Error("Please choose a correct choice");
+}
+
+
+//set computer choice
+let computerChoice = getComputerChoice();
+
+//log both choices
+console.log(playerChoice);
+console.log(computerChoice);
+
+//display result of the round
+console.log(playRound(playerChoice,computerChoice));
+
+
+
 // The computer choice is randomly generated
 function getComputerChoice() {
     let randomSelection = Math.floor(Math.random() *3);
@@ -15,17 +37,52 @@ function getComputerChoice() {
 }
 
 // As I user I want to input my choice, case insenstive
-
 function getPlayerChoice() {
-    let playerChoice = prompt("Please choose Rock, Paper or Scissors !");
+    let playerChoice = prompt("Please choose Rock, Papper or Scissors !");
     playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase();
-    console.log(playerChoice);
+
+    return playerChoice;
 }
 
-getPlayerChoice();
+
 
 
 //I want to play a round of RPS against the computer
+function playRound(playerSelection,computerSelection) {
+    let result;
+    if (playerSelection === "Rock" && computerSelection === "Papper") {
+
+        return result = "You lose ! Papper beats Rock";
+
+    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
+
+        return result = "You win ! Rock beats Scissors";
+
+    } else if (playerSelection === "Papper" && computerSelection === "Rock") {
+
+        return result = "You win ! Papper beats Rock";
+
+    } else if (playerSelection === "Papper" && computerSelection === "Scissors") {
+
+        return result = "You lose ! Scissors beats Papper";
+
+    } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
+
+        return result = "You lose ! Rock beats Scissor";
+
+    } else if (playerSelection === "Scissors" && computerSelection === "Papper") {
+
+        return result = "You win ! Scissors beats Papper";
+
+    } else {
+
+        return result = "It's a draw !";
+    }
+}
+
+
+
+
 
 //The winner is displayed after 5 rounds
 
