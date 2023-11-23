@@ -1,26 +1,12 @@
 "use strict"
 
-//set player choice
-let playerChoice = getPlayerChoice(); 
+let playerScore = 0;
+let computerScore = 0;
 
-//check user input
-if (playerChoice !== "Rock" && playerChoice !== "Papper" && playerChoice !== "Scissors") {
-    console.log(playerChoice);
-    throw new Error("Please choose a correct choice");
-}
+game();
 
-
-//set computer choice
-let computerChoice = getComputerChoice();
-
-//log both choices
-console.log(playerChoice);
-console.log(computerChoice);
-
-//display result of the round
-console.log(playRound(playerChoice,computerChoice));
-
-
+console.log(`Computer Score : ${computerScore}
+Player Score : ${playerScore}`);
 
 // The computer choice is randomly generated
 function getComputerChoice() {
@@ -44,34 +30,37 @@ function getPlayerChoice() {
     return playerChoice;
 }
 
-
-
-
 //I want to play a round of RPS against the computer
 function playRound(playerSelection,computerSelection) {
     let result;
     if (playerSelection === "Rock" && computerSelection === "Papper") {
 
+        computerScore++;
         return result = "You lose ! Papper beats Rock";
 
     } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
 
+        playerScore++;
         return result = "You win ! Rock beats Scissors";
 
     } else if (playerSelection === "Papper" && computerSelection === "Rock") {
 
+        playerScore++;
         return result = "You win ! Papper beats Rock";
 
     } else if (playerSelection === "Papper" && computerSelection === "Scissors") {
 
+        computerScore++;
         return result = "You lose ! Scissors beats Papper";
 
     } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
 
+        computerScore++;
         return result = "You lose ! Rock beats Scissor";
 
     } else if (playerSelection === "Scissors" && computerSelection === "Papper") {
 
+        playerScore++;
         return result = "You win ! Scissors beats Papper";
 
     } else {
@@ -81,8 +70,29 @@ function playRound(playerSelection,computerSelection) {
 }
 
 
-
-
-
 //The winner is displayed after 5 rounds
+
+function game() {
+    for (let i = 0 ; i < 5 ; i++) {
+        //set player choice
+        let playerChoice = getPlayerChoice(); 
+
+        //check user input
+        if (playerChoice !== "Rock" && playerChoice !== "Papper" && playerChoice !== "Scissors") {
+            console.log(playerChoice);
+            throw new Error("Please choose a correct choice");
+        }
+
+
+        //set computer choice
+        let computerChoice = getComputerChoice();
+
+        //log both choices
+        console.log(playerChoice);
+        console.log(computerChoice);
+
+        //display result of the round
+        console.log(playRound(playerChoice,computerChoice));
+    }
+}
 
