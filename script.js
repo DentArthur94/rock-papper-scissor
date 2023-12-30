@@ -73,7 +73,7 @@ function playRound(playerSelection,computerSelection) {
 //The winner is displayed after 5 rounds
 
 function game() {
-    for (let i = 0 ; i < 5 ; i++) {
+    for (let i = 0 ; i < 1 ; i++) {
         //set player choice
         let playerChoice = getPlayerChoice(); 
 
