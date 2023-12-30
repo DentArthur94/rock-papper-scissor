@@ -3,10 +3,28 @@
 let playerScore = 0;
 let computerScore = 0;
 
-game();
+//game();
 
-console.log(`Computer Score : ${computerScore}
-Player Score : ${playerScore}`);
+const rockButton = document.querySelector("#rockButton"); 
+const papperButton = document.querySelector("#papperButton"); 
+const scissorsButton = document.querySelector("#scissorsButton"); 
+
+
+rockButton.addEventListener("click" , () => {
+
+    let computerChoice = getComputerChoice();
+    playRound("Rock" , computerChoice);
+
+    //log both choices
+    console.log("Rock");
+    console.log(computerChoice);
+
+    console.log(`Computer Score : ${computerScore}
+    Player Score : ${playerScore}`);
+});
+
+
+
 
 // The computer choice is randomly generated
 function getComputerChoice() {
