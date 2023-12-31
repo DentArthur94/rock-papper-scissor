@@ -9,47 +9,44 @@ const rockButton = document.querySelector("#rockButton");
 const papperButton = document.querySelector("#papperButton"); 
 const scissorsButton = document.querySelector("#scissorsButton"); 
 const resultsDiv = document.querySelector("#results"); 
+let i = 1; 
 
+const roundCounter = document.createElement("p"); 
+roundCounter.setAttribute("id", "roundCounter");
 
+const playerChoicePara = document.createElement("p");
+playerChoicePara.setAttribute("id","playerChoice"); 
 
-rockButton.addEventListener("click" , () => {
+const computerChoicePara = document.createElement("p"); 
+computerChoicePara.setAttribute("id","computerChoice"); 
 
-    let computerChoice = getComputerChoice();
-    playRound("Rock" , computerChoice);
+const scorePara = document.createElement("p"); 
+scorePara.setAttribute("id","scorePara"); 
 
+    rockButton.addEventListener("click" , function eventHandler() {
 
-    const playerChoicePara = document.createElement("p");
-    playerChoicePara.setAttribute("id","playerChoice"); 
+            roundCounter.textContent = `${i}/5`;
+            resultsDiv.appendChild(roundCounter);
 
-    const computerChoicePara = document.createElement("p"); 
-    computerChoicePara.setAttribute("id","computerChoice"); 
+            let computerChoice = getComputerChoice();
+            playRound("Rock" , computerChoice);
 
-    const scorePara = document.createElement("p"); 
-    scorePara.setAttribute("id","scorePara"); 
+            playerChoicePara.textContent = "Player Choice : " + rockButton.textContent;
+            resultsDiv.appendChild(playerChoicePara); 
 
-    playerChoicePara.textContent = "Player Choice : " + rockButton.textContent;
-    resultsDiv.appendChild(playerChoicePara); 
+            computerChoicePara.textContent = "Computer Choice : " + computerChoice; 
+            resultsDiv.appendChild(computerChoicePara); 
 
-    computerChoicePara.textContent = "Computer Choice : " + computerChoice; 
-    resultsDiv.appendChild(computerChoicePara); 
+            scorePara.textContent = `Computer Score : ${computerScore}
+            Player Score : ${playerScore}`;
+            resultsDiv.appendChild(scorePara);
+            i++;
 
-    scorePara.textContent = `Computer Score : ${computerScore}
-    Player Score : ${playerScore}`;
-    resultsDiv.appendChild(scorePara);
+            if(i === 6) {
+                rockButton.removeEventListener("click", eventHandler);
+            }
 
-    //log both choices
-    // console.log("Rock");
-    // console.log(computerChoice);
-
-    // console.log(`Computer Score : ${computerScore}
-    // Player Score : ${playerScore}`);
-
-
-
-
-
-
-});
+    });
 
 
 
@@ -68,13 +65,6 @@ function getComputerChoice() {
     } 
 }
 
-// As I user I want to input my choice, case insenstive
-function getPlayerChoice() {
-    let playerChoice = prompt("Please choose Rock, Papper or Scissors !");
-    playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase();
-
-    return playerChoice;
-}
 
 //I want to play a round of RPS against the computer
 function playRound(playerSelection,computerSelection) {
