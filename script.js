@@ -9,11 +9,13 @@ const rockButton = document.querySelector("#rockButton");
 const papperButton = document.querySelector("#papperButton"); 
 const scissorsButton = document.querySelector("#scissorsButton"); 
 const resultsDiv = document.querySelector("#results"); 
+
+const buttons = document.querySelectorAll("button");
+
 let i = 1; 
 let endGameResult; 
 
 const roundCounter = document.createElement("p"); 
-roundCounter.setAttribute("id", "roundCounter");
 
 const playerChoicePara = document.createElement("p");
 playerChoicePara.setAttribute("id","playerChoice"); 
@@ -24,15 +26,18 @@ computerChoicePara.setAttribute("id","computerChoice");
 const scorePara = document.createElement("p"); 
 scorePara.setAttribute("id","scorePara"); 
 
-    rockButton.addEventListener("click" , function eventHandler() {
+buttons.forEach(function(button) {
+
+    button.addEventListener("click" , function eventHandler() {
 
             roundCounter.textContent = `${i}/5`;
             resultsDiv.appendChild(roundCounter);
 
             let computerChoice = getComputerChoice();
-            playRound("Rock" , computerChoice);
+            let playerChoice = button.textContent;
+            playRound(playerChoice , computerChoice);
 
-            playerChoicePara.textContent = "Player Choice : " + rockButton.textContent;
+            playerChoicePara.textContent = "Player Choice : " + playerChoice;
             resultsDiv.appendChild(playerChoicePara); 
 
             computerChoicePara.textContent = "Computer Choice : " + computerChoice; 
@@ -55,10 +60,10 @@ scorePara.setAttribute("id","scorePara");
                 const endGamePara = document.createElement("p"); 
                 endGamePara.textContent = endGameResult;
                 resultsDiv.appendChild(endGamePara);
-                rockButton.removeEventListener("click", eventHandler);
+                button.removeEventListener("click", eventHandler);
             }
 
-    });
+    })});
 
 
 
@@ -118,29 +123,5 @@ function playRound(playerSelection,computerSelection) {
 }
 
 
-//The winner is displayed after 5 rounds
 
-function game() {
-    for (let i = 0 ; i < 1 ; i++) {
-        //set player choice
-        let playerChoice = getPlayerChoice(); 
-
-        //check user input
-        if (playerChoice !== "Rock" && playerChoice !== "Papper" && playerChoice !== "Scissors") {
-            console.log(playerChoice);
-            throw new Error("Please choose a correct choice");
-        }
-
-
-        //set computer choice
-        let computerChoice = getComputerChoice();
-
-        //log both choices
-        console.log(playerChoice);
-        console.log(computerChoice);
-
-        //display result of the round
-        console.log(playRound(playerChoice,computerChoice));
-    }
-}
 
