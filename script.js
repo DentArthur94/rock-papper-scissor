@@ -10,6 +10,7 @@ const papperButton = document.querySelector("#papperButton");
 const scissorsButton = document.querySelector("#scissorsButton"); 
 const resultsDiv = document.querySelector("#results"); 
 let i = 1; 
+let endGameResult; 
 
 const roundCounter = document.createElement("p"); 
 roundCounter.setAttribute("id", "roundCounter");
@@ -43,6 +44,17 @@ scorePara.setAttribute("id","scorePara");
             i++;
 
             if(i === 6) {
+                if (computerScore>playerScore) {
+                        endGameResult = "Computer wins !";
+                } else if (playerScore>computerScore) {
+                        endGameResult ="Player wins !"; 
+                } else {
+                        endGameResult = "It's a draw !"
+                }
+
+                const endGamePara = document.createElement("p"); 
+                endGamePara.textContent = endGameResult;
+                resultsDiv.appendChild(endGamePara);
                 rockButton.removeEventListener("click", eventHandler);
             }
 
