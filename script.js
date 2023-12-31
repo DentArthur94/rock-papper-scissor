@@ -3,7 +3,6 @@
 let playerScore = 0;
 let computerScore = 0;
 
-//game();
 
 const rockButton = document.querySelector("#rockButton"); 
 const papperButton = document.querySelector("#papperButton"); 
@@ -16,15 +15,10 @@ let i = 1;
 let endGameResult; 
 
 const roundCounter = document.createElement("p"); 
-
 const playerChoicePara = document.createElement("p");
-playerChoicePara.setAttribute("id","playerChoice"); 
-
 const computerChoicePara = document.createElement("p"); 
-computerChoicePara.setAttribute("id","computerChoice"); 
-
 const scorePara = document.createElement("p"); 
-scorePara.setAttribute("id","scorePara"); 
+
 
 buttons.forEach(function(button) {
 
