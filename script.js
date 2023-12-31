@@ -8,6 +8,8 @@ let computerScore = 0;
 const rockButton = document.querySelector("#rockButton"); 
 const papperButton = document.querySelector("#papperButton"); 
 const scissorsButton = document.querySelector("#scissorsButton"); 
+const resultsDiv = document.querySelector("#results"); 
+
 
 
 rockButton.addEventListener("click" , () => {
@@ -15,12 +17,38 @@ rockButton.addEventListener("click" , () => {
     let computerChoice = getComputerChoice();
     playRound("Rock" , computerChoice);
 
-    //log both choices
-    console.log("Rock");
-    console.log(computerChoice);
 
-    console.log(`Computer Score : ${computerScore}
-    Player Score : ${playerScore}`);
+    const playerChoicePara = document.createElement("p");
+    playerChoicePara.setAttribute("id","playerChoice"); 
+
+    const computerChoicePara = document.createElement("p"); 
+    computerChoicePara.setAttribute("id","computerChoice"); 
+
+    const scorePara = document.createElement("p"); 
+    scorePara.setAttribute("id","scorePara"); 
+
+    playerChoicePara.textContent = "Player Choice : " + rockButton.textContent;
+    resultsDiv.appendChild(playerChoicePara); 
+
+    computerChoicePara.textContent = "Computer Choice : " + computerChoice; 
+    resultsDiv.appendChild(computerChoicePara); 
+
+    scorePara.textContent = `Computer Score : ${computerScore}
+    Player Score : ${playerScore}`;
+    resultsDiv.appendChild(scorePara);
+
+    //log both choices
+    // console.log("Rock");
+    // console.log(computerChoice);
+
+    // console.log(`Computer Score : ${computerScore}
+    // Player Score : ${playerScore}`);
+
+
+
+
+
+
 });
 
 
